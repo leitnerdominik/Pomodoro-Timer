@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 
-class Timer extends Component {
+const Timer = (props) => {
   
-  state = {
-    min: 0,
-    sec: 0,
-  };
-
-  render() {
+  const style = {
+    fontSize:'5rem',
+  }
     return (
-      <div>
-        <span>{this.state.min}</span>
+      <div style={style}>
+        <span>{props.min}</span>
         :
-        <span>{this.state.sec}</span>
+        <span>{props.sec}</span>
       </div>
     );
-  }
 }
 
 export default Timer;
