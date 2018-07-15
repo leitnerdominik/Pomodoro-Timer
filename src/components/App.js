@@ -9,26 +9,37 @@ import ButtonOptions from './ButtonOptions/ButtonOptions';
 class App extends Component {
 
     state = {
-        min: '00',
-        sec: '00',
+        sec: 0,
         playing: false,
       };
 
-    duration(sec) {
+    setDuration(sec) {
+        this.setState({sec: sec});
+    }
+
+    formatSeconds(sec) {
         let minutes = parseInt(sec / 60, 10);
         let seconds = parseInt(sec % 60, 10);
 
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        this.setState({min: minutes, sec: seconds});
+        return {
+            sec: seconds,
+            min: minutes,
+        }
     }
 
+    // componentDidUpdate() {
+    //     s
+    // }
+
     render() {
+        const timeObj = this.formatSeconds(this.state.sec);
         return (
             <div>
-                <ButtonOptions duration={this.duration.bind(this)} />
-                <Timer min={this.state.min} sec={this.state.sec} />
+                <ButtonOptions duration={this.setDuration.bind(this)} />
+                <Timer min={timeObj.min} sec={timeObj.sec} />
                 <ButtonControl />
             </div>
         );
