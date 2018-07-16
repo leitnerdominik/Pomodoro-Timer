@@ -10,11 +10,17 @@ class App extends Component {
 
     state = {
         sec: 0,
+        initTime: 0,
         playing: false,
       };
 
     setDuration(sec) {
-        this.setState({sec: sec});
+        this.setState({
+            sec: sec,
+            initTime: sec
+        });
+
+        this.stopTimer();
     }
 
     formatSeconds(sec) {
@@ -30,9 +36,23 @@ class App extends Component {
         }
     }
 
-    // componentDidUpdate() {
-    //     s
-    // }
+    startTimer() {
+        let duration = this.state.sec;
+        this.timer = setInterval(() => {
+            
+            if(--duration >= 0) {
+                this.setState({sec: duration});
+            }
+        }, 1000);
+    }
+
+    stopTimer() {
+        clearInterval(this.timer);
+    }
+
+    resetTimer() {
+        this.setDuration(this.state.initTime);
+    }
 
     render() {
         const timeObj = this.formatSeconds(this.state.sec);
@@ -40,7 +60,10 @@ class App extends Component {
             <div>
                 <ButtonOptions duration={this.setDuration.bind(this)} />
                 <Timer min={timeObj.min} sec={timeObj.sec} />
-                <ButtonControl />
+                <ButtonControl 
+                    start={this.startTimer.bind(this)}
+                    stop={this.stopTimer.bind(this)}
+                    reset={this.resetTimer.bind(this)} />
             </div>
         );
     }

@@ -4,9 +4,9 @@ import React from 'react';
 const ButtonOptions = props => {
     return (
         <div>
-            <button>start</button>
-            <button>pause</button>
-            <button>reset</button>
+            <button onClick={props.start}>start</button>
+            <button onClick={props.stop}>pause</button>
+            <button onClick={props.reset}>reset</button>
         </div>
     )
 }
