@@ -1,7 +1,95 @@
-* {
-    box-sizing: border-box;
+body {
+    height: 100%;
+    background-color: #262626;
+    color: white;
+    margin: 0px auto;
+    font-family: 'Ubuntu', sans-serif;
 }
 
-html, body {
-    height: 100%;
+h1 {
+    text-align: center;
+    /* background-color: #9a1010; */
+    box-sizing: border-box;
+    margin-top: 0;
+    padding: 1.66%;
 }
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    width: 80%;
+    margin: auto;
+}
+
+.options button {
+    margin: 0 10px;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+    font-size: 1.3rem;
+    font-weight: 550;
+     
+ }
+
+ .options button:hover {
+    cursor: pointer;
+ }
+ 
+ .options button:nth-child(1) {
+    background-color: #146FAB;
+ }
+ 
+ .options button:nth-child(1):hover {
+    background-color: #1424AB;
+ }
+ 
+ .options button:nth-child(2) {
+    background-color: #E87E13;
+ }
+ 
+ .options button:nth-child(2):hover {
+    background-color: #E81313;
+ }
+ 
+ .options button:nth-child(3) {
+    background-color: #27800D;
+ }
+ 
+ .options button:nth-child(3):hover {
+    background-color: #41B726;
+ }
+
+ .control {
+    width: 30%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+ }
+ 
+ .control button {
+    color: white;
+    background: #2F3B6A;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+ }
+ 
+ .control button:hover {
+    background: #3b57c7;
+ }
+
+ .timer {
+    margin: 40px;
+    text-align: center;
+    font-size: 7rem;
+ }
+ 
+ .minutes {
+    font-weight: 700;
+ }

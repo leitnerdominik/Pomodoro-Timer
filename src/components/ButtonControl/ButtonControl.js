@@ -3,7 +3,7 @@ import React from 'react';
 
 const ButtonOptions = props => {
     return (
-        <div>
+        <div className="control">
             <button onClick={props.start}>start</button>
             <button onClick={props.stop}>pause</button>
             <button onClick={props.reset}>reset</button>
