@@ -1,3 +1,12 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    width: 100%;
+}
+
 body {
     height: 100%;
     background-color: #262626;
@@ -63,10 +72,10 @@ h1 {
  }
 
  .control {
-    width: 30%;
-    margin: auto;
+    width: 50%;
     display: grid;
-    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-template-columns: repeat(3, minmax(50px, 1fr));
+    margin: 0 auto;
  }
  
  .control button {
@@ -87,9 +96,42 @@ h1 {
  .timer {
     margin: 40px;
     text-align: center;
-    font-size: 7rem;
+    font-size: 7em;
  }
  
  .minutes {
     font-weight: 700;
+ }
+
+ @media only screen and (max-width: 700px) {
+
+    h1 {
+        padding: 5% 0;
+    }
+
+     .options {
+         display: block;
+     }
+
+     .options button {
+         width: 100%;
+         margin: 10px auto;
+     }
+
+     .control {
+         display: block;
+         width: 100%; 
+     }
+
+     .control button {
+         display: block;
+         width: 80%;
+         margin: 5px auto;
+     }
+
+     .timer {
+         font-size: 16px;
+         font-size: 25.5vw;
+     }
+
  }

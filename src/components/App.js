@@ -29,7 +29,8 @@ class App extends Component {
     setDuration(sec) {
         this.setState({
             sec: sec,
-            initTime: sec
+            initTime: sec,
+            playing: false,
         });
 
         this.stopTimer();
@@ -54,28 +55,39 @@ class App extends Component {
             icon: {x32: pomodoroIcon},
             timeout: 5000,
             onClick: () => {
-                window.focus();
-                this.sound.pause();
+                this.stopSound();
+            },
+            onClose: () => {
+                this.stopSound();
             }
         });
     }
 
+    stopSound() {
+        window.focus();
+        this.sound.pause();
+    }
+
     startTimer() {
         let duration = this.state.sec;
-        this.timer = setInterval(() => {
-            
-            if(--duration >= 0) {
-                this.setState({sec: duration});
-            } else {
-                this.handlePushNotification();
-                this.sound.play();
-                clearInterval(this.timer);
-            }
-        }, 1000);
+        if(!this.state.playing) {
+            this.setState({playing: true});
+            this.timer = setInterval(() => {
+                
+                if(--duration >= 0) {
+                    this.setState({sec: duration});
+                } else {
+                    this.handlePushNotification();
+                    this.sound.play();
+                    clearInterval(this.timer);
+                }
+            }, 1000);
+        }
     }
 
     stopTimer() {
         clearInterval(this.timer);
+        this.setState({playing: false});
     }
 
     resetTimer() {

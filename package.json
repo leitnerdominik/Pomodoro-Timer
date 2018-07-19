@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "http://leitnerdominik.github.io/Pomodoro-Timer",
   "scripts": {
+    "predeploy": "npm run build",
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production"
   },
