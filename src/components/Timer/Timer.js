@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
+import { formatTime } from '../../util/timeUtil';
+
 const Timer = (props) => {
-  
+    
+    const displayTime = formatTime(props.sec);
     return (
       <div className="timer">
-        <span className="minutes">{props.min}</span>
+        <span className="minutes">{displayTime.min}</span>
         :
-        <span>{props.sec}</span>
+        <span>{displayTime.sec}</span>
       </div>
     );
 }

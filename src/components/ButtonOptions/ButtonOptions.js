@@ -1,12 +1,14 @@
 import React from 'react';
 
+import { shortBreak, longBreak, pomodoroBreak } from '../../util/timeUtil';
+
 
 const ButtonControl = props => {
     return (
         <div className="options">
-            <button onClick={() => props.duration(5 * 60)}>short break</button>
-            <button onClick={() => props.duration(25 * 60)}>Pomodoro</button>
-            <button onClick={() => props.duration(10 * 60)}>long break</button>
+            <button onClick={() => props.duration(shortBreak)}>short break</button>
+            <button onClick={() => props.duration(pomodoroBreak)}>Pomodoro</button>
+            <button onClick={() => props.duration(longBreak)}>long break</button>
         </div>
     )
 }

@@ -8,24 +8,34 @@ import ButtonControl from './ButtonControl/ButtonControl';
 import ButtonOptions from './ButtonOptions/ButtonOptions';
 import pomodoroIcon from '../images/icon.png';
 import soundFile from '../assets/audio.mp3';
+import { pomodoroBreak, formatTime } from '../util/timeUtil';
 
 
 
 class App extends Component {
 
     state = {
-        sec: 25 * 60,
-        initTime: 25 * 60,
+        sec: pomodoroBreak,
+        initTime: pomodoroBreak,
         playing: false,
       };
     
     sound = new Audio(soundFile);
 
-    
-    componentDidMount() {
+
+    componentDidMount() {  
         Push.Permission.request();
     }
 
+    componentDidUpdate() {
+        this.setBrowserTitle();
+    }
+
+    setBrowserTitle() {
+        const titleTime = formatTime(this.state.sec);
+        document.title = `${titleTime.min}:${titleTime.sec}`;
+    }
+    
     setDuration(sec) {
         this.setState({
             sec: sec,
@@ -34,19 +44,6 @@ class App extends Component {
         });
 
         this.stopTimer();
-    }
-
-    formatSeconds(sec) {
-        let minutes = parseInt(sec / 60, 10);
-        let seconds = parseInt(sec % 60, 10);
-
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        return {
-            sec: seconds,
-            min: minutes,
-        }
     }
 
     handlePushNotification() {
@@ -80,6 +77,12 @@ class App extends Component {
                     this.handlePushNotification();
                     this.sound.play();
                     clearInterval(this.timer);
+
+                    // if(this.state.initTime === pomodoroBreak) {
+                    //     this.setDuration(5 * 60);
+                    // } else {
+                    //     this.setDuration(pomodoroBreak);
+                    // }
                 }
             }, 1000);
         }
@@ -95,12 +98,11 @@ class App extends Component {
     }
 
     render() {
-        const timeObj = this.formatSeconds(this.state.sec);
         return (
             <div>
                 <h1>Pomodoro Timer</h1>
                 <ButtonOptions duration={this.setDuration.bind(this)} />
-                <Timer min={timeObj.min} sec={timeObj.sec} />
+                <Timer sec={this.state.sec} />
                 <ButtonControl 
                     start={this.startTimer.bind(this)}
                     stop={this.stopTimer.bind(this)}
